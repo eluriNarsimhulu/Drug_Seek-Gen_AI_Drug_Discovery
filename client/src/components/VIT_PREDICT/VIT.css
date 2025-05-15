@@ -1,0 +1,347 @@
+/* Enhanced VIT Styling - Molecular Property Classifier */
+
+/* Base Styles */
+
+@keyframes vitGradientBG {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+.vit{
+  height: 1500px;
+}
+.vitApp {
+  width: 100%;
+  /* height: 1500px; */
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.vitContainer {
+  width: 100%;
+  max-width: 850px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25),
+              0 0 0 1px rgba(255, 255, 255, 0.1),
+              0 8px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Header Styles */
+.vitHeader {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: white;
+  padding: 2.5rem 3rem;
+  text-align: center;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.vitHeader::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+  z-index: 0;
+}
+
+.vitTitle {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.025em;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.vitSubtitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+  opacity: 0.8;
+  margin-top: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Main Content Styles */
+.vitMainContent {
+  padding: 2.5rem;
+}
+
+.vitForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.vitFormGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.vitLabel {
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #1e3c72;
+  font-size: 1.05rem;
+}
+
+.vitInputContainer {
+  position: relative;
+}
+
+.vitInput {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 2px solid #e0e5ec;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
+}
+
+.vitInput:focus {
+  outline: none;
+  border-color: #1e3c72;
+  box-shadow: 0 0 0 3px rgba(30, 60, 114, 0.15);
+}
+
+.vitInput::placeholder {
+  color: #a0aec0;
+}
+
+.vitButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #2a5298, #1e3c72);
+  color: white;
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(30, 60, 114, 0.3);
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+  height: 3.25rem;
+}
+
+.vitButton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.1), rgba(255,255,255,0));
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.vitButton:hover::before {
+  transform: translateX(100%);
+}
+
+.vitButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(30, 60, 114, 0.4);
+  background: linear-gradient(135deg, #2a5298, #1a2b60);
+}
+
+.vitButton:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(30, 60, 114, 0.3);
+}
+
+.vitButton:disabled {
+  background: #cbd5e0;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.vitButtonLoading {
+  background: linear-gradient(135deg, #3a6ac8, #2a5298);
+}
+
+.vitSpinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: vitSpin 1s ease-in-out infinite;
+}
+
+@keyframes vitSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* Error Message Styles */
+.vitErrorMessage {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background-color: #fff5f5;
+  color: #c53030;
+  border-radius: 12px;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  border: 1px solid #fed7d7;
+  box-shadow: 0 4px 10px rgba(197, 48, 48, 0.1);
+}
+
+.vitErrorIcon {
+  background-color: #fc8181;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+/* Result Card Styles */
+.vitResultCard {
+  margin-top: 2.5rem;
+  border-radius: 16px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 
+              0 0 0 1px rgba(0, 0, 0, 0.05);
+  animation: vitFadeIn 0.5s ease-out;
+}
+
+@keyframes vitFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.vitResultHeader {
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+  color: white;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.vitResultIcon {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.vitResultTitle {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.vitResultContent {
+  padding: 1.5rem;
+}
+
+.vitResultItem {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.25rem;
+}
+
+.vitResultItem:last-child {
+  margin-bottom: 0;
+}
+
+.vitResultLabel {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.vitResultValue {
+  padding: 0.75rem 1rem;
+  background-color: #f7fafc;
+  border-radius: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 1.05rem;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  border: 1px solid #edf2f7;
+}
+
+.vitSmiles {
+  color: #2b6cb0;
+}
+
+.vitClass {
+  color: #2c7a7b;
+  font-weight: 600;
+}
+
+/* Footer Styles */
+.vitFooter {
+  padding: 1.5rem;
+  text-align: center;
+  color: #718096;
+  border-top: 1px solid #edf2f7;
+  font-size: 0.9rem;
+}
+
+.vitFooterText {
+  opacity: 0.8;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .vitHeader {
+    padding: 2rem 1.5rem;
+  }
+  
+  .vitTitle {
+    font-size: 2.2rem;
+  }
+  
+  .vitMainContent {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .vitTitle {
+    font-size: 1.8rem;
+  }
+  
+  .vitSubtitle {
+    font-size: 1rem;
+  }
+  
+  .vitButton {
+    font-size: 1rem;
+    padding: 0.9rem 1.25rem;
+  }
+}

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>NeuroVision Explorer</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/viewer-static/papaya.css">
+    <script src="/viewer-static/papaya.js"></script>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+    <style>
+        :root {
+    --primary-dark: #1a365d;
+    --primary-light: #4299e1;
+    --secondary-dark: #2d3748;
+    --accent: #f6ad55;
+    --background: #f7fafc;
+    --text: #2d3748;
+    --card-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    max-width: 1800px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.app-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+    color: white;
+    border-radius: 1rem;
+    box-shadow: var(--card-shadow);
+}
+
+.app-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.app-header p {
+    opacity: 0.95;
+    font-size: 1.1rem;
+}
+
+.viewer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    flex: 1;
+}
+
+.viewer-panel {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.viewer-panel:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.panel-header {
+    padding: 1rem;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+.panel-header.original {
+    background: linear-gradient(90deg, #3182ce, #63b3ed);
+}
+
+.panel-header.predicted {
+    background: linear-gradient(90deg, #38a169, #68d391);
+}
+
+.panel-header.combined {
+    background: linear-gradient(90deg, #9f7aea, #b794f4);
+}
+
+.panel-icon {
+    width: 22px;
+    height: 22px;
+}
+
+.panel-content {
+    flex: 1;
+    min-height: 400px;
+    position: relative;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    overflow: hidden;
+    background: #f9fafb;
+}
+
+.status-bar {
+    padding: 0.8rem;
+    background: var(--secondary-dark);
+    color: white;
+    text-align: center;
+    font-size: 0.9rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.loading-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(66, 153, 225, 0.3);
+    border-top-color: var(--primary-light);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    .app-header h1 {
+        font-size: 2rem;
+    }
+    .viewer-panel:hover {
+        transform: none;
+        box-shadow: var(--card-shadow);
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>3D Image Viewer</h1>
+            <p>Advanced 3D Medical Imaging Analysis</p>
+        </header>
+        
+        <main class="viewer-grid">
+            <!-- Original Scan -->
+            <div class="viewer-panel">
+                <div class="panel-header original">
+                    <!-- [SVG icon and label] -->
+                    <span>Original Scan</span>
+                </div>
+                <div class="panel-content">
+                    <div class="loading-overlay" id="loading-original">
+                        <div class="spinner"></div>
+                    </div>
+                    <div class="papaya" id="papaya-original"></div>
+                </div>
+                <div class="status-bar">Axial View | Hounsfield Units</div>
+            </div>
+            
+            <!-- Segmentation Result -->
+            <div class="viewer-panel">
+                <div class="panel-header predicted">
+                    <!-- [SVG icon and label] -->
+                    <span>Output Mask</span>
+                </div>
+                <div class="panel-content">
+                    <div class="loading-overlay" id="loading-predicted">
+                        <div class="spinner"></div>
+                    </div>
+                    <div class="papaya" id="papaya-predicted"></div>
+                </div>
+                <div class="status-bar">Tissue Classification | Confidence 92%</div>
+            </div>
+            
+            <!-- Fusion View -->
+            <div class="viewer-panel">
+                <div class="panel-header combined">
+                    <!-- [SVG icon and label] -->
+                    <span>Combined View</span>
+                </div>
+                <div class="panel-content">
+                    <div class="loading-overlay" id="loading-combined">
+                        <div class="spinner"></div>
+                    </div>
+                    <div class="papaya" id="papaya-combined"></div>
+                </div>
+                <div class="status-bar">Overlay Mode | Opacity 60%</div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        $(document).ready(function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const original = urlParams.get('original');
+            const predicted = urlParams.get('predicted');
+            
+            if (!original || !predicted) {
+                document.body.innerHTML = `
+                    <div class="app-container" style="justify-content: center; align-items: center;">
+                        <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: var(--card-shadow); text-align: center;">
+                            <h2 style="color: #e53e3e; margin-bottom: 1rem;">Missing Parameters</h2>
+                            <p>Required image parameters not found in URL.</p>
+                            <p style="margin-top: 1rem;"><code>?original=URL&predicted=URL</code></p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            if (typeof papaya !== 'undefined') {
+                const viewerConfig = {
+                    showControls: true,
+                    showOrientation: true,
+                    radiological: false,
+                    smoothDisplay: true,
+                    allowScroll: true,
+                    showSliceNumber: true,
+                    showScale: true,
+                    showCrosshairs: true,
+                    showValue: true
+                };
+
+                const originalParams = JSON.stringify({
+                    ...viewerConfig,
+                    images: [original],
+                    name: "Original Scan"
+                });
+
+                const predictedParams = JSON.stringify({
+                    ...viewerConfig,
+                    images: [predicted],
+                    name: "AI Segmentation",
+                    colorMap: "hot"
+                });
+
+                const combinedParams = JSON.stringify({
+                    ...viewerConfig,
+                    images: [original, predicted],
+                    name: "Fusion View",
+                    combineParam: true,
+                    overlayOpacity: 0.6,
+                    overlayColorMap: "cool"
+                });
+
+                // Assign data-params dynamically
+                $('#papaya-original').attr('data-params', originalParams);
+                $('#papaya-predicted').attr('data-params', predictedParams);
+                $('#papaya-combined').attr('data-params', combinedParams);
+
+                // Start Papaya
+                papaya.Container.startPapaya();
+
+                // Hide loading spinners when ready
+                setTimeout(() => {
+                    document.querySelectorAll('.loading-overlay').forEach(el => {
+                        el.style.display = 'none';
+                    });
+                }, 1000);
+            } else {
+                document.body.innerHTML = `
+                    <div class="app-container" style="justify-content: center; align-items: center;">
+                        <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: var(--card-shadow); text-align: center;">
+                            <h2 style="color: #e53e3e; margin-bottom: 1rem;">Viewer Error</h2>
+                            <p>Failed to load the medical imaging viewer library.</p>
+                            <p>Please refresh the page or contact support.</p>
+                        </div>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
