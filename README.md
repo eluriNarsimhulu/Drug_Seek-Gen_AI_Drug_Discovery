@@ -93,8 +93,7 @@ Create a `.env` file in the root directory with the following configuration:
 
 ```env
 # Database Configuration
-DB=mongodb+srv://nani2narsimhulu:YOUR_PASSWORD_HERE@cluster.mongodb.net/drugseek
-
+DB="your url"
 # JWT Configuration
 JWTPRIVATEKEY=mySuperSecretPrivateKey123!
 SALT=10
