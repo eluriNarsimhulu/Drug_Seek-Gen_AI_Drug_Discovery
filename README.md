@@ -2,6 +2,23 @@
 
 ![Drug Discovery](https://img.shields.io/badge/AI-Drug%20Discovery-blue) ![GenAI](https://img.shields.io/badge/GenAI-Lung%20Disease-green) ![Status](https://img.shields.io/badge/Status-Active-success)
 
+## 🎥 Project Demo  
+
+<p align="center">
+  <a href="https://youtu.be/u_GuJ1ZaIKU">
+    <img src="https://img.youtube.com/vi/u_GuJ1ZaIKU/0.jpg" alt="Watch the demo" width="600"/>
+  </a>
+</p>
+
+*Click the image to watch the full working demo inside YouTube.*
+
+## 🎥 Additional Demo Videos  
+
+📹 **[Project Explanation Video 1](https://youtu.be/-8BvnisNSVM)**  
+📹 **[Project Explanation Video 2](https://youtu.be/ShDlVK8YNJ0)**  
+
+*These videos explain the key points and functionality of the project.*
+---
 ## 📋 Project Overview
 
 The advent of GenAI has brought forth the potential to revolutionize the accuracy and efficiency of lung disease diagnosis, with a specific focus on CT images. One of the most significant opportunities of software development to contribute to the pharmaceutical industry is to enhance drug discovery and imaging diagnosis.
@@ -14,12 +31,6 @@ This comprehensive web application leverages **Generative AI** for:
 - ⚛️ **Autodocking** using ML/GenAI
 
 Custom software solutions, such as virtual screening and molecular modeling software, contribute enormously to the drug discovery process.
-
-## 🎥 Project Demo
-
-📹 **[Watch Project Explanation Video](https://drive.google.com/file/d/1Y0fV6HUXdmhyOjNYYlReN3i6-4g3H6UB/view?usp=sharing)**
-
-*This video explains the key points and functionality of the project.*
 
 ## 🏗️ Project Structure
 
@@ -205,8 +216,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 Author
 
 **Your Name**
-- GitHub: [@your-username](https://github.com/your-username)
-- Email: your.email@example.com
+- GitHub: [eluriNarsimhulu](https://github.com/eluriNarsimhulu)
+- Email: elurinarsimhulu777@gmail.com
 
 ## 🙏 Acknowledgments
 
@@ -229,7 +240,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Check the [project video](https://drive.google.com/file/d/1Y0fV6HUXdmhyOjNYYlReN3i6-4g3H6UB/view?usp=sharing) for detailed explanation
 - Open an issue on GitHub
 - Contact the development team
-
+- **[Orignal worked repo](https://github.com/eluriNarsimhulu/Gen_AI_Drug_Discovery)**
 ---
 
 *Built with ❤️ for advancing healthcare through AI*
