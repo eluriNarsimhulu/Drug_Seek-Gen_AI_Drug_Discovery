@@ -151,6 +151,11 @@ npm start
 cd client/src/components/lung
 python app.py
 ```
+4. **Start Python Flask Server (nii backend)**
+```bash
+cd client/src
+python nii_backend.py
+```
 *Flask server will handle AI/ML processing*
 
 > 📝 **Note**: If you encounter path errors in the Flask server, adjust the file paths in `app.py` according to your system configuration.
