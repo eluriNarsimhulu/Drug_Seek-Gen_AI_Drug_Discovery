@@ -1,5 +1,8 @@
 # 🧬 Drug_Seek-Gen_AI_Drug_Discovery
 
+## 🚀 Live Application
+🔗 **Website:** https://drugseek-delta.vercel.app/
+
 ![Drug Discovery](https://img.shields.io/badge/AI-Drug%20Discovery-blue) ![GenAI](https://img.shields.io/badge/GenAI-Lung%20Disease-green) ![Status](https://img.shields.io/badge/Status-Active-success)
 
 ## 🎥 Project Demo  
